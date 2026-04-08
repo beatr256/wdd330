@@ -1,19 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Movie App</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Final Project Web Application using HTML, CSS, and Vanilla JS" />
+  <title>Final Project App</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <header>
+    <h1>My Final Project App</h1>
+    <nav>
+      <ul>
+        <li><a href="#joke">Random Joke</a></li>
+        <li><a href="#quote">Inspirational Quote</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<h1>🎬 Movie App</h1>
+  <main>
+    <section id="joke">
+      <h2>Random Joke (API)</h2>
+      <button id="getJokeBtn">Get Joke</button>
+      <p id="jokeText"></p>
+    </section>
 
-<input type="text" id="searchInput" placeholder="Search movies...">
-<button onclick="searchMovies()">Search</button>
+    <section id="quote">
+      <h2>Inspirational Quote (API)</h2>
+      <button id="getQuoteBtn">Get Quote</button>
+      <p id="quoteText"></p>
+    </section>
 
-<div id="movies"></div>
+    <section id="movies">
+  <h2>Popular Movies (TMDB API)</h2>
+  <button id="getMoviesBtn">Get Movies</button>
+  <ul id="moviesList"></ul>
+</section>
 
-<script src="main.js"></script>
+<section id="quote">
+  <h2>Inspirational Quote (Quotable API)</h2>
+  <button id="getQuoteBtn">Get Quote</button>
+  <p id="quoteText"></p>
+</section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 My Final Project</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
