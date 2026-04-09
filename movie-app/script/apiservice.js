@@ -1,16 +1,34 @@
-// Handles API calls
-export default class ApiService {
-  static async getPopularMovies() {
-    const apiKey = "94f4a65fd4625e9e43edc06511f0535d";
-    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`);
-    const data = await response.json();
-    return data.results.slice(0, 5); // return top 5 movies
-  }
+const OMDB_KEY = "94f4a65fd4625e9e43edc06511f0535d"; // Your OMDb key
+const TMDB_KEY = "your_tmdb_api_key_here"; // Replace with your TMDb key
 
-  static async getQuote() {
-    const response = await fetch("https://api.quotable.io/random");
+export async function searchMovies(query) {
+  try {
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_KEY}&s=${query}`);
     const data = await response.json();
-    return `${data.content} — ${data.author}`;
+    return data.Search || [];
+  } catch (error) {
+    console.error("OMDb error:", error);
+    return [];
   }
 }
 
+export async function getMovieDetails(id) {
+  try {
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_KEY}&i=${id}`);
+    return await response.json();
+  } catch (error) {
+    console.error("OMDb details error:", error);
+    return {};
+  }
+}
+
+export async function getTrendingMovies() {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_KEY}`);
+    const data = await response.json();
+    return data.results || [];
+  } catch (error) {
+    console.error("TMDb error:", error);
+    return [];
+  }
+}
