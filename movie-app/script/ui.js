@@ -5,11 +5,11 @@ export function displayResults(movies) {
   const resultsDiv = document.getElementById("results");
   resultsDiv.innerHTML = movies.map(movie => `
     <div class="movie-card" tabindex="0" role="button">
-      <img src="${movie.Poster}" alt="${movie.Title} movie poster">
-      <h3>${movie.Title}</h3>
-      <p>${movie.Year}</p>
-      <button onclick="addToFavorites('${movie.imdbID}')">Add to Favorites</button>
-      <button onclick="showDetails('${movie.imdbID}')">Details</button>
+      <img src="https://image.tmdb.org/t/p/w400${movie.poster_path}" alt="${movie.title} movie poster">
+      <h3>${movie.title}</h3>
+      <p>${movie.release_date}</p>
+      <button onclick="window.addToFavorites('${movie.id}')">Add to Favorites</button>
+      <button onclick="window.showDetails('${movie.id}')">Details</button>
     </div>
   `).join("");
 }
@@ -17,10 +17,10 @@ export function displayResults(movies) {
 export async function showDetails(id) {
   const movie = await getMovieDetails(id);
   document.getElementById("results").innerHTML = `
-    <h2>${movie.Title}</h2>
-    <img src="${movie.Poster}" alt="${movie.Title} movie poster">
-    <p>${movie.Plot}</p>
-    <p>⭐ ${movie.imdbRating}</p>
+    <h2>${movie.title}</h2>
+    <img src="https://image.tmdb.org/t/p/w400${movie.poster_path}" alt="${movie.title} movie poster">
+    <p>${movie.overview}</p>
+    <p>⭐ ${movie.vote_average}</p>
   `;
 }
 

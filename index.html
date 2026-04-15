@@ -1,9 +1,41 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en-US">
 <head>
-  <title>my site</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Movie App - Search and explore movies">
+  <meta name="author" content="Your Name">
+  <title>Movie Explorer</title>
+  <link rel="stylesheet" href="movie-app/style/style.css">
 </head>
 <body>
-  <h1>Hello world!</h1>
+  <header role="banner">
+    <h1>Movie Explorer</h1>
+    <nav role="navigation">
+      <button id="favoritesBtn" aria-label="View Favorites">Favorites</button>
+    </nav>
+  </header>
+
+  <main role="main">
+    <section id="searchSection" aria-labelledby="searchHeading">
+      <h2 id="searchHeading">Search Movies</h2>
+      <input type="text" id="searchInput" placeholder="Search for a movie..." aria-label="Movie search input">
+      <button id="searchBtn">Search</button>
+    </section>
+
+    <section id="results" aria-live="polite"></section>
+    <section id="trending" aria-labelledby="trendingHeading">
+      <h2 id="trendingHeading">Trending Movies</h2>
+    </section>
+    <section id="favorites" aria-labelledby="favoritesHeading">
+      <h2 id="favoritesHeading">Your Favorites</h2>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Movie Explorer | Powered by TMDb</p>
+  </footer>
+
+  <script type="module" src="movie-app/script/app.js"></script>
 </body>
 </html>

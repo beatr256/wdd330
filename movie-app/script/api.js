@@ -1,23 +1,26 @@
-const OMDB_KEY = "94f4a65fd4625e9e43edc06511f0535d"; // Your OMDb key
-const TMDB_KEY = "your_tmdb_api_key_here"; // Replace with your TMDb key
+const TMDB_KEY = "94f4a65fd4625e9e43edc06511f0535d";
 
 export async function searchMovies(query) {
   try {
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_KEY}&s=${query}`);
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${query}`;
+    console.log("Searching:", url);
+    const response = await fetch(url);
     const data = await response.json();
-    return data.Search || [];
+    console.log("API Response:", data);
+    
+    return data.results || [];
   } catch (error) {
-    console.error("OMDb error:", error);
+    console.error("TMDB error:", error);
     return [];
   }
 }
 
 export async function getMovieDetails(id) {
   try {
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_KEY}&i=${id}`);
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDB_KEY}`);
     return await response.json();
   } catch (error) {
-    console.error("OMDb details error:", error);
+    console.error("TMDB details error:", error);
     return {};
   }
 }

@@ -1,24 +1,49 @@
 import { searchMovies, getTrendingMovies } from './api.js';
-import { displayResults, renderTrending } from './ui.js';
-import { showFavorites } from './storage.js';
+import { displayResults, renderTrending, showDetails } from './ui.js';
+import { showFavorites, addToFavorites } from './storage.js';
 
-document.getElementById("searchBtn").addEventListener("click", async () => {
-  const query = document.getElementById("searchInput").value;
-  if (!query) {
-    document.getElementById("results").innerHTML = "<p>Please enter a movie title.</p>";
-    return;
+// Make functions globally accessible for onclick handlers
+window.showDetails = showDetails;
+window.addToFavorites = addToFavorites;
+
+// Get DOM elements
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+const results = document.getElementById("results");
+const favoritesBtn = document.getElementById("favoritesBtn");
+
+// Handle search functionality
+async function handleSearch() {
+  const query = searchInput.value;
+  if (query.trim() === "") { 
+    results.innerHTML = "<p>Please enter a movie title.</p>";
+    return; 
   }
-  const movies = await searchMovies(query); // OMDb
+    
+  if (searchBtn) searchBtn.innerText = `Results for "${query}"`;
+  results.innerHTML = `<p>Searching for "${query}"...</p>`;
+
+  const movies = await searchMovies(query);
   if (movies.length === 0) {
-    document.getElementById("results").innerHTML = "<p>No results found.</p>";
+    results.innerHTML = "<p>No results found.</p>";
   } else {
     displayResults(movies);
   }
+}
+
+// Event listeners
+searchBtn.addEventListener("click", handleSearch);
+
+// Allow Enter key to trigger search
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    handleSearch();
+  }
 });
 
-document.getElementById("favoritesBtn").addEventListener("click", () => {
+favoritesBtn.addEventListener("click", () => {
   showFavorites();
 });
 
-// Load trending movies from TMDb on startup
-getTrendingMovies().then(renderTrending);
+// Load trending movies on startup
+getTrendingMovies().then(renderTrending);                                             
