@@ -35,3 +35,15 @@ export async function getTrendingMovies() {
     return [];
   }
 }
+
+export async function getMovieTrailers(id) {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${TMDB_KEY}`);
+    const data = await response.json();
+    const trailer = data.results?.find(video => video.type === "Trailer" && video.site === "YouTube");
+    return trailer || null;
+  } catch (error) {
+    console.error("Trailer error:", error);
+    return null;
+  }
+}

@@ -1,10 +1,12 @@
 import { searchMovies, getTrendingMovies } from './api.js';
-import { displayResults, renderTrending, showDetails, setFeaturedMovie } from './ui.js';
+import { displayResults, renderTrending, showDetails, setFeaturedMovie, playTrailer, closeTrailer } from './ui.js';
 import { showFavorites, addToFavorites } from './storage.js';
 
 // Make functions globally accessible for onclick handlers
 window.showDetails = showDetails;
 window.addToFavorites = addToFavorites;
+window.playTrailer = playTrailer;
+window.closeTrailer = closeTrailer;
 
 // Get DOM elements
 const searchInput = document.getElementById("searchInput");

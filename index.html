@@ -44,6 +44,13 @@
     <p>&copy; 2026 Movie Explorer | Powered by TMDb</p>
   </footer>
 
+  <div id="trailerModal" class="trailer-modal">
+    <div class="trailer-container">
+      <button class="close-trailer" onclick="window.closeTrailer()">&times;</button>
+      <iframe id="trailerIframe" class="trailer-iframe" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+
   <script type="module" src="movie-app/script/app.js"></script>
 </body>
 </html>
