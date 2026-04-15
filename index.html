@@ -17,10 +17,18 @@
   </header>
 
   <main role="main">
-    <section id="searchSection" aria-labelledby="searchHeading">
+    <section id="searchSection" aria-labelledby="searchHeading">  
       <h2 id="searchHeading">Search Movies</h2>
       <input type="text" id="searchInput" placeholder="Search for a movie..." aria-label="Movie search input">
       <button id="searchBtn">Search</button>
+    </section>
+
+    <section id="featured" aria-labelledby="featuredHeading">
+      <div id="featuredContent">
+        <h2 id="featuredHeading">Featured Movie</h2>
+        <p id="featuredTitle"></p>
+        <p id="featuredOverview"></p>
+      </div>
     </section>
 
     <section id="results" aria-live="polite"></section>

@@ -1,5 +1,5 @@
 import { searchMovies, getTrendingMovies } from './api.js';
-import { displayResults, renderTrending, showDetails } from './ui.js';
+import { displayResults, renderTrending, showDetails, setFeaturedMovie } from './ui.js';
 import { showFavorites, addToFavorites } from './storage.js';
 
 // Make functions globally accessible for onclick handlers
@@ -46,4 +46,9 @@ favoritesBtn.addEventListener("click", () => {
 });
 
 // Load trending movies on startup
-getTrendingMovies().then(renderTrending);                                             
+getTrendingMovies().then(movies => {
+  if (movies.length > 0) {
+    setFeaturedMovie(movies[0]);
+  }
+  renderTrending(movies);
+});                                             

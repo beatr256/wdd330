@@ -1,6 +1,15 @@
 import { getMovieDetails } from './api.js';
 import { addToFavorites } from './storage.js';
 
+export function setFeaturedMovie(movie) {
+  const featured = document.getElementById('featured');
+  const backdropUrl = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`;
+  featured.style.backgroundImage = `url('${backdropUrl}')`;
+  
+  document.getElementById('featuredTitle').textContent = movie.title;
+  document.getElementById('featuredOverview').textContent = movie.overview || 'No description available';
+}
+
 export function displayResults(movies) {
   const resultsDiv = document.getElementById("results");
   resultsDiv.innerHTML = movies.map(movie => `
