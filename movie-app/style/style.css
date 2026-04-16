@@ -51,6 +51,23 @@ h2 {
   letter-spacing: 1px;
 }
 
+#trendingHeading::before {
+  content: '🔥 ';
+  margin-right: 0.5rem;
+  font-size: 1.6rem;
+  display: inline-block;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
 /* Featured Section */
 #featured {
   background-size: cover;
