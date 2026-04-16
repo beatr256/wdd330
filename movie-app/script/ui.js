@@ -56,13 +56,21 @@ export async function showDetails(id) {
 }
 
 export function renderTrending(movies) {
-  const trendingDiv = document.getElementById("trending");
-  trendingDiv.innerHTML = movies.map(movie => `
+  const trendingContent = document.getElementById("trendingContent");
+  
+  if (!movies || movies.length === 0) {
+    trendingContent.innerHTML = `<p>No trending movies available</p>`;
+    return;
+  }
+
+  trendingContent.innerHTML = movies.map(movie => `
     <div class="movie-card">
       <div class="movie-rating-badge">⭐ ${movie.vote_average.toFixed(1)}</div>
-      <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title} movie poster">
+      <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title} movie poster" onerror="this.src='https://via.placeholder.com/200x300?text=No+Image'">
       <h3>${movie.title}</h3>
+      <p>${movie.release_date}</p>
       <button onclick="window.playTrailer('${movie.id}')">▶ Trailer</button>
+      <button onclick="window.addToFavorites('${movie.id}')">Add to Favorites</button>
     </div>
   `).join("");
 }

@@ -49,8 +49,14 @@ favoritesBtn.addEventListener("click", () => {
 
 // Load trending movies on startup
 getTrendingMovies().then(movies => {
+  console.log("Trending movies fetched:", movies);
   if (movies.length > 0) {
     setFeaturedMovie(movies[0]);
+    renderTrending(movies);
+  } else {
+    console.warn("No trending movies returned");
+    document.getElementById("trending").innerHTML = "<p>No trending movies available</p>";
   }
-  renderTrending(movies);
+}).catch(error => {
+  console.error("Error loading trending movies:", error);
 });                                             
