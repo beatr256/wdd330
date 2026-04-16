@@ -145,6 +145,18 @@ section {
   margin-top: 1.5rem;
 }
 
+#favorites {
+  display: block;
+}
+
+#favoritesContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
 /* Movie Grid */
 .movie-grid {
   display: grid;

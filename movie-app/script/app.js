@@ -1,10 +1,11 @@
 import { searchMovies, getTrendingMovies } from './api.js';
 import { displayResults, renderTrending, showDetails, setFeaturedMovie, playTrailer, closeTrailer } from './ui.js';
-import { showFavorites, addToFavorites } from './storage.js';
+import { showFavorites, addToFavorites, removeFromFavorites } from './storage.js';
 
 // Make functions globally accessible for onclick handlers
 window.showDetails = showDetails;
 window.addToFavorites = addToFavorites;
+window.removeFromFavorites = removeFromFavorites;
 window.playTrailer = playTrailer;
 window.closeTrailer = closeTrailer;
 
